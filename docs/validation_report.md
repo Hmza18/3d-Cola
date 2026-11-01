@@ -8,11 +8,11 @@ Blender **5.2.3 LTS** &nbsp;|&nbsp; **10/10 tests passed**
 
 | | check | detail |
 |---|---|---|
-| PASS | assets/elo_cola.obj | `2,902,513 bytes` |
-| PASS | assets/elo_cola.mtl | `281 bytes` |
-| PASS | assets/elo_cola_texture.png | `909,075 bytes` |
-| PASS | assets/elo_cola.blend | `1,701,419 bytes` |
-| PASS | renders/elo_cola_product_512.png | `266,419 bytes` |
+| PASS | assets\elo_cola.obj | `2,902,513 bytes` |
+| PASS | assets\elo_cola.mtl | `294 bytes` |
+| PASS | assets\elo_cola_texture.png | `907,335 bytes` |
+| PASS | assets\elo_cola.blend | `1,714,855 bytes` |
+| PASS | renders\elo_cola_product_512.png | `269,618 bytes` |
 
 ### Test 2 &mdash; The asset contains exactly one mesh object
 
@@ -33,12 +33,12 @@ Blender **5.2.3 LTS** &nbsp;|&nbsp; **10/10 tests passed**
 |---|---|---|
 | PASS | MTL references exactly one image file | `['elo_cola_texture.png']` |
 | PASS | that image is a PNG | `elo_cola_texture.png` |
-| PASS | the image sits beside the OBJ/MTL | `assets/elo_cola_texture.png` |
+| PASS | the image sits beside the OBJ/MTL | `assets\elo_cola_texture.png` |
 | PASS | MTL declares exactly one material | `['EloColaSurface']` |
 | PASS | .blend holds exactly one image datablock | `['elo_cola_texture']` |
 | PASS | the material uses exactly one image-texture node | `['elo_cola_texture']` |
 | PASS | texture is 2048x2048 | `2048x2048` |
-| PASS | texture is packed inside the .blend | `{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}` |
+| PASS | texture is packed inside the .blend | `{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//elo_cola_texture.png'}` |
 
 ### Test 4 &mdash; Geometry is closed on every side (watertight, manifold)
 
@@ -111,7 +111,7 @@ Blender **5.2.3 LTS** &nbsp;|&nbsp; **10/10 tests passed**
 | PASS | label faces sample saturated printed ink (not bare metal) | `mean channel spread 137.7, mean RGB [95.2, 58.1, 117.3]` |
 | PASS | cobalt, red and white artwork all land on the barrel | `of 8064 label faces: 59.2% cobalt, 31.9% red, 9.0% white` |
 | PASS | lid faces sample neutral aluminium | `mean RGB [179.0, 183.5, 190.0]` |
-| PASS | bottom faces sample neutral aluminium | `mean RGB [170.4, 175.2, 182.2]` |
+| PASS | bottom faces sample neutral aluminium | `mean RGB [170.4, 175.3, 182.2]` |
 | PASS | rim faces sample neutral aluminium | `mean RGB [178.4, 182.6, 188.8]` |
 | PASS | tab_top faces sample neutral aluminium | `mean RGB [209.0, 212.7, 218.1]` |
 
@@ -146,7 +146,7 @@ Blender **5.2.3 LTS** &nbsp;|&nbsp; **10/10 tests passed**
 | PASS | one mesh object present | `['EloCola']` |
 | PASS | UV map present | `['UVMap']` |
 | PASS | material present | `['EloColaSurface']` |
-| PASS | single texture present and packed (no missing dependency) | `[{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}]` |
+| PASS | single texture present and packed (no missing dependency) | `[{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//elo_cola_texture.png'}]` |
 | PASS | render set-up saved (Cycles) | `CYCLES` |
 | PASS | camera and studio lights saved with the project | `1 camera(s), 7 light(s)` |
 
@@ -158,5 +158,5 @@ Blender **5.2.3 LTS** &nbsp;|&nbsp; **10/10 tests passed**
 |---|---|---|
 | PASS | format is PNG | `PNG` |
 | PASS | resolution is 512 x 512 | `512 x 512` |
-| PASS | image is not blank | `stddev=74.86` |
-| i | file size | `266,419 bytes` |
+| PASS | image is not blank | `stddev=60.27` |
+| i | file size | `269,618 bytes` |

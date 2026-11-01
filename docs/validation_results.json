@@ -10,28 +10,28 @@
       "checks": [
         {
           "ok": true,
-          "label": "assets/elo_cola.obj",
+          "label": "assets\\elo_cola.obj",
           "detail": "2,902,513 bytes"
         },
         {
           "ok": true,
-          "label": "assets/elo_cola.mtl",
-          "detail": "281 bytes"
+          "label": "assets\\elo_cola.mtl",
+          "detail": "294 bytes"
         },
         {
           "ok": true,
-          "label": "assets/elo_cola_texture.png",
-          "detail": "909,075 bytes"
+          "label": "assets\\elo_cola_texture.png",
+          "detail": "907,335 bytes"
         },
         {
           "ok": true,
-          "label": "assets/elo_cola.blend",
-          "detail": "1,701,419 bytes"
+          "label": "assets\\elo_cola.blend",
+          "detail": "1,714,855 bytes"
         },
         {
           "ok": true,
-          "label": "renders/elo_cola_product_512.png",
-          "detail": "266,419 bytes"
+          "label": "renders\\elo_cola_product_512.png",
+          "detail": "269,618 bytes"
         }
       ]
     },
@@ -80,7 +80,7 @@
         {
           "ok": true,
           "label": "the image sits beside the OBJ/MTL",
-          "detail": "assets/elo_cola_texture.png"
+          "detail": "assets\\elo_cola_texture.png"
         },
         {
           "ok": true,
@@ -105,7 +105,7 @@
         {
           "ok": true,
           "label": "texture is packed inside the .blend",
-          "detail": "{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}"
+          "detail": "{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//elo_cola_texture.png'}"
         }
       ]
     },
@@ -358,7 +358,7 @@
         {
           "ok": true,
           "label": "bottom faces sample neutral aluminium",
-          "detail": "mean RGB [170.4, 175.2, 182.2]"
+          "detail": "mean RGB [170.4, 175.3, 182.2]"
         },
         {
           "ok": true,
@@ -477,7 +477,7 @@
         {
           "ok": true,
           "label": "single texture present and packed (no missing dependency)",
-          "detail": "[{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}]"
+          "detail": "[{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//elo_cola_texture.png'}]"
         },
         {
           "ok": true,
@@ -509,12 +509,12 @@
         {
           "ok": true,
           "label": "image is not blank",
-          "detail": "stddev=74.86"
+          "detail": "stddev=60.27"
         },
         {
           "ok": null,
           "label": "file size",
-          "detail": "266,419 bytes"
+          "detail": "269,618 bytes"
         }
       ]
     }

@@ -69,8 +69,8 @@ def add_backdrop():
     nt = mat.node_tree; nt.nodes.clear()
     out = nt.nodes.new("ShaderNodeOutputMaterial"); out.location = (600, 0)
     bsdf = nt.nodes.new("ShaderNodeBsdfPrincipled"); bsdf.location = (300, 0)
-    bsdf.inputs["Base Color"].default_value = (0.012, 0.016, 0.026, 1.0)
-    bsdf.inputs["Roughness"].default_value = 0.13
+    bsdf.inputs["Base Color"].default_value = (0.014, 0.028, 0.075, 1.0)
+    bsdf.inputs["Roughness"].default_value = 0.30
     bsdf.inputs["Metallic"].default_value = 0.0
     if "Specular IOR Level" in bsdf.inputs:
         bsdf.inputs["Specular IOR Level"].default_value = 0.6
@@ -95,19 +95,21 @@ def add_backdrop():
     bsdf.inputs["Roughness"].default_value = 0.85
     ramp = nt.nodes.new("ShaderNodeValToRGB"); ramp.location = (0, 0)
     ramp.color_ramp.elements[0].position = 0.12
-    ramp.color_ramp.elements[0].color = (0.006, 0.010, 0.020, 1.0)
+    ramp.color_ramp.elements[0].color = (0.003, 0.009, 0.035, 1.0)
     ramp.color_ramp.elements[1].position = 0.80
-    ramp.color_ramp.elements[1].color = (0.055, 0.080, 0.140, 1.0)
+    ramp.color_ramp.elements[1].color = (0.035, 0.12, 0.36, 1.0)
     grad = nt.nodes.new("ShaderNodeTexGradient"); grad.location = (-220, 0)
     grad.gradient_type = "QUADRATIC_SPHERE"
     mapn = nt.nodes.new("ShaderNodeMapping"); mapn.location = (-430, 0)
-    mapn.inputs["Location"].default_value = (0.5, 0.5, 0.0)
-    mapn.inputs["Scale"].default_value = (1.9, 1.9, 1.0)
+    mapn.inputs["Location"].default_value = (-18.0, -17.3, 0.0)
+    mapn.inputs["Scale"].default_value = (36.0, 36.0, 1.0)
     tc = nt.nodes.new("ShaderNodeTexCoord"); tc.location = (-640, 0)
     nt.links.new(tc.outputs["UV"], mapn.inputs["Vector"])
     nt.links.new(mapn.outputs["Vector"], grad.inputs["Vector"])
     nt.links.new(grad.outputs["Color"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], bsdf.inputs["Base Color"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = 0.65
     nt.links.new(bsdf.outputs["BSDF"], out.inputs["Surface"])
     me2.materials.append(mat2)
 
@@ -150,7 +152,8 @@ def main():
                     help="override sample count for every output")
     ap.add_argument("--only", default="all",
                     choices=["all", "product", "hero", "ortho", "lid"])
-    args = ap.parse_args()
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else ([] if bpy.app.binary_path else sys.argv[1:])
+    args = ap.parse_args(argv)
 
     os.makedirs(RENDERS, exist_ok=True)
     sc = open_project()

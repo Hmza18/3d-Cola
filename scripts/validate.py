@@ -75,7 +75,9 @@ class Test:
 
 
 def run_subproc(script):
-    r = subprocess.run([sys.executable, os.path.join(SCRIPTS, script)],
+    command = ([bpy.app.binary_path, "--background", "--python", os.path.join(SCRIPTS, script)]
+               if bpy.app.binary_path else [sys.executable, os.path.join(SCRIPTS, script)])
+    r = subprocess.run(command,
                        capture_output=True, text=True, timeout=900)
     for line in r.stdout.splitlines():
         if line.startswith("@@JSON@@"):

@@ -50,12 +50,31 @@ painted with Pillow.
 
 <p align="center">
   <img src="renders/elo_cola_product_512.png" alt="elo_cola_product_512.png" width="320">
-  <br><sub>The mandatory 512 &times; 512 deliverable &mdash; Cycles, 480 samples</sub>
+  <br><sub>The mandatory 512 &times; 512 deliverable &mdash; Cycles, 192 samples</sub>
 </p>
 
 ---
 
 ## Design
+
+### Studio refinement (November 2026)
+
+The wave identity now has an Original Blend eyebrow and a discreet volume line.
+The lighting rig uses smaller, lower-powered rectangular softboxes with asymmetric
+edge lighting, retaining detail in the rolled aluminium rim and pull tab. Reduced
+large-scale bump and roughness variation give the lacquer a smoother manufactured
+finish; bare metal roughness is 0.22 and printed ink 0.32. A cobalt studio floor
+softens the reflection and grounds the product against a blue halo backdrop.
+The existing geometry, UV layout, -Y label direction and 0.01 export factor are retained.
+
+The build also fixes packed-image path resolution on Windows, command-line argument
+handling in Blender, and validation subprocesses when launched from Blender itself.
+For Blender CLI renders, pass options after `--`, for example:
+`blender --background --python scripts/render_product.py -- --only product`.
+
+Lighting references: [Visual Education's cola product brief](https://visualeducation.com/photography-brief-5-coca-cola-product-shoot/)
+and [Pepsi's photographic art direction](https://www.tonelab.so/brand-guidelines/Pepsi-Visual-Identity-System-2014.pdf).
+These informed reflection control and colour contrast; no reference artwork is included.
 
 Four label directions were built and rendered on the real geometry before one
 was chosen.
@@ -238,8 +257,8 @@ at `v = 0.37`:
 
 | | Metallic | Roughness | Coat |
 |---|---|---|---|
-| bare aluminium (below `v = 0.37`) | 1.00 | 0.34 | 0.015 |
-| printed ink (above `v = 0.37`) | 0.22 | 0.42 | 0.10 @ 0.26 rough |
+| bare aluminium (below `v = 0.37`) | 1.00 | 0.22 | 0.015 |
+| printed ink (above `v = 0.37`) | 0.22 | 0.32 | 0.10 @ 0.26 rough |
 
 Chilled-can condensation is also implemented, procedurally, from two Voronoi
 cells &mdash; one for the droplet profile, one for a per-cell random value so

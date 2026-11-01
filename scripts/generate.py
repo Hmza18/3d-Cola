@@ -418,7 +418,7 @@ def make_material(ob, texture=None):
     metallic = mad(mask.outputs[0], -0.78, 1.0, (-40, -40))     # 1.00 -> 0.22
     nt.links.new(metallic.outputs[0], bsdf.inputs["Metallic"])
 
-    rough_base = mad(mask.outputs[0], 0.08, 0.34, (-40, -220))  # 0.34 -> 0.42
+    rough_base = mad(mask.outputs[0], 0.10, 0.22, (-40, -220))  # brushed metal -> satin ink
 
     # Two scales of imperfection: broad unevenness from the rolling and
     # printing process, and fine tooth in the lacquer.
@@ -431,8 +431,8 @@ def make_material(ob, texture=None):
     fine.inputs["Scale"].default_value = 260.0
     fine.inputs["Detail"].default_value = 2.0
 
-    nvar = mad(noise.outputs["Fac"], 0.085, -0.0425, (-40, -420))
-    nfine = mad(fine.outputs["Fac"], 0.035, -0.0175, (-40, -560))
+    nvar = mad(noise.outputs["Fac"], 0.024, -0.012, (-40, -420))
+    nfine = mad(fine.outputs["Fac"], 0.016, -0.008, (-40, -560))
     nsum = nt.nodes.new("ShaderNodeMath"); nsum.location = (80, -490)
     nsum.operation = "ADD"
     nt.links.new(nvar.outputs[0], nsum.inputs[0])
@@ -462,7 +462,7 @@ def make_material(ob, texture=None):
     wav.inputs["Detail"].default_value = 2.0
     mixb = nt.nodes.new("ShaderNodeMath"); mixb.location = (-160, -770)
     mixb.operation = "MULTIPLY_ADD"
-    mixb.inputs[1].default_value = 0.45
+    mixb.inputs[1].default_value = 0.08
     mixb.inputs[2].default_value = 0.0
     nt.links.new(wav.outputs["Fac"], mixb.inputs[0])
     addb = nt.nodes.new("ShaderNodeMath"); addb.location = (20, -740)
@@ -470,8 +470,8 @@ def make_material(ob, texture=None):
     nt.links.new(bump_n.outputs["Fac"], addb.inputs[0])
     nt.links.new(mixb.outputs[0], addb.inputs[1])
     bump = nt.nodes.new("ShaderNodeBump"); bump.location = (200, -700)
-    bump.inputs["Strength"].default_value = 0.055
-    bump.inputs["Distance"].default_value = 0.004
+    bump.inputs["Strength"].default_value = 0.025
+    bump.inputs["Distance"].default_value = 0.0015
     nt.links.new(addb.outputs[0], bump.inputs["Height"])
 
     # ---- condensation -------------------------------------------------
@@ -554,7 +554,7 @@ def build_render_setup():
     # rolling off specular highlights -- the right transform for product viz.
     sc.view_settings.view_transform = "Khronos PBR Neutral"
     sc.view_settings.look = "None"
-    sc.view_settings.exposure = 0.12
+    sc.view_settings.exposure = 0.0
     sc.view_settings.gamma = 1.0
 
     # ---- camera: three-quarter view, slightly above the mid-line ------
@@ -600,13 +600,13 @@ def build_render_setup():
     # strips raking from behind.  On a cylinder a narrow source becomes a
     # long vertical specular -- that is what separates the can from a dark
     # ground and gives aluminium its edge.
-    area("KeyPanel",    (-38, -38, 23), (0, 0, 6.3), 62, 132, 72000, (1.00, 0.99, 0.97))
-    area("FillPanel",   (42, -30, 16), (0, 0, 5.8), 48, 100, 22000, (0.97, 0.98, 1.00))
-    area("RimLeft",     (-23, 26, 20), (0, 0, 7.2), 6, 78, 150000, (0.93, 0.96, 1.00))
-    area("RimRight",    (24, 22, 18), (0, 0, 6.8), 6, 76, 150000, (1.00, 0.98, 0.95))
-    area("TopPanel",    (19, -21, 33), (0, 0, 12.1), 26, 26, 54000)
-    area("LidFill",     (-15, -5, 30), (0, 0, 12.2), 17, 17, 17000, (0.96, 0.98, 1.00))
-    area("FrontBounce", (0, -58, 4), (0, 0, 4.0), 90, 36, 6000, (0.98, 0.99, 1.00))
+    area("KeyPanel",    (-18, -24, 18), (0, 0, 6.3), 12, 30, 9500, (1.00, 0.97, 0.93))
+    area("FillPanel",   (22, -28, 13), (0, 0, 5.8), 24, 32, 3800, (0.85, 0.92, 1.00))
+    area("RimLeft",     (-18, 12, 16), (0, 0, 7.2), 3, 22, 4200, (0.68, 0.81, 1.00))
+    area("RimRight",    (18, 9, 14), (0, 0, 6.8), 3, 24, 6500, (0.86, 0.93, 1.00))
+    area("TopPanel",    (4, 8, 26), (0, 0, 12.1), 10, 16, 4200)
+    area("LidFill",     (-12, -10, 24), (0, 0, 12.2), 8, 12, 1600, (0.96, 0.98, 1.00))
+    area("FrontBounce", (0, -38, 8), (0, 0, 6.0), 28, 24, 2400, (0.98, 0.99, 1.00))
 
     # ---- world: soft vertical gradient ----------------------------------
     world = bpy.data.worlds.new("Studio")
@@ -716,8 +716,9 @@ def main():
           f"x {dims[2]*OBJ_SCALE:.6f} (OBJ units, metres)")
 
     # ---- pack the texture, then save the native project ---------------
-    img.filepath = bpy.path.relpath(TEXTURE) if BLEND else TEXTURE
+    img.filepath = TEXTURE
     img.pack()
+    img.filepath = "//elo_cola_texture.png"
     os.makedirs(ASSETS, exist_ok=True)
     bpy.ops.wm.save_as_mainfile(filepath=BLEND, compress=True)
     print(f"[gen] wrote {BLEND}")

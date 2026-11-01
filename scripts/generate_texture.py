@@ -385,6 +385,11 @@ def concept_D(img, vec, W, H, rows, CXF, row):
 
     tracked(d, (CXF, y_sw + 96), "COLA", font("Outfit-Bold", 40),
             WHITE, tracking=28)
+    # Quiet secondary hierarchy balances the large script and flowing wave.
+    tracked(d, (CXF, row(rows["body_hi"] + 105)), "ORIGINAL BLEND",
+            font("InstrumentSans-Bold", 18), WHITE_SOFT, tracking=6)
+    tracked(d, (CXF, row(rows["body_hi"] + 145)), "355 mL  /  12 FL OZ",
+            font("InstrumentSans-Regular", 20), WHITE, tracking=3)
 
 
 def back_panel_wave(W, H, rows, row):
