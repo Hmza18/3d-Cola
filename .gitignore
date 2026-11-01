@@ -1,0 +1,22 @@
+# Blender
+*.blend1
+*.blend2
+*.blend@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# scratch renders and intermediates (the five deliverables are committed)
+renders/_ortho_*.png
+/tmp_*
+*.exr

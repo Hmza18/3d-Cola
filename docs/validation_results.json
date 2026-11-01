@@ -1,0 +1,522 @@
+{
+  "blender": "5.2.3 LTS",
+  "passed": 10,
+  "total": 10,
+  "tests": [
+    {
+      "test": 1,
+      "name": "Required files exist and are non-empty",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "assets/elo_cola.obj",
+          "detail": "2,902,513 bytes"
+        },
+        {
+          "ok": true,
+          "label": "assets/elo_cola.mtl",
+          "detail": "281 bytes"
+        },
+        {
+          "ok": true,
+          "label": "assets/elo_cola_texture.png",
+          "detail": "909,075 bytes"
+        },
+        {
+          "ok": true,
+          "label": "assets/elo_cola.blend",
+          "detail": "1,701,419 bytes"
+        },
+        {
+          "ok": true,
+          "label": "renders/elo_cola_product_512.png",
+          "detail": "266,419 bytes"
+        }
+      ]
+    },
+    {
+      "test": 2,
+      "name": "The asset contains exactly one mesh object",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "elo_cola.blend holds exactly 1 mesh object",
+          "detail": "1: ['EloCola']"
+        },
+        {
+          "ok": true,
+          "label": "every other object is a camera or a light (not exported)",
+          "detail": "['CAMERA', 'LIGHT', 'MESH']"
+        },
+        {
+          "ok": true,
+          "label": "elo_cola.obj declares exactly 1 object",
+          "detail": "['EloCola']"
+        },
+        {
+          "ok": null,
+          "label": "cameras / lights in the project",
+          "detail": "['ProductCam'] / ['FillPanel', 'FrontBounce', 'KeyPanel', 'LidFill', 'RimLeft', 'RimRight', 'TopPanel']"
+        }
+      ]
+    },
+    {
+      "test": 3,
+      "name": "The exported model references exactly one PNG texture",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "MTL references exactly one image file",
+          "detail": "['elo_cola_texture.png']"
+        },
+        {
+          "ok": true,
+          "label": "that image is a PNG",
+          "detail": "elo_cola_texture.png"
+        },
+        {
+          "ok": true,
+          "label": "the image sits beside the OBJ/MTL",
+          "detail": "assets/elo_cola_texture.png"
+        },
+        {
+          "ok": true,
+          "label": "MTL declares exactly one material",
+          "detail": "['EloColaSurface']"
+        },
+        {
+          "ok": true,
+          "label": ".blend holds exactly one image datablock",
+          "detail": "['elo_cola_texture']"
+        },
+        {
+          "ok": true,
+          "label": "the material uses exactly one image-texture node",
+          "detail": "['elo_cola_texture']"
+        },
+        {
+          "ok": true,
+          "label": "texture is 2048x2048",
+          "detail": "2048x2048"
+        },
+        {
+          "ok": true,
+          "label": "texture is packed inside the .blend",
+          "detail": "{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}"
+        }
+      ]
+    },
+    {
+      "test": 4,
+      "name": "Geometry is closed on every side (watertight, manifold)",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "zero boundary edges",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "zero non-manifold edges",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "zero loose vertices",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "zero loose edges",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "zero degenerate faces",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "zero non-manifold vertices",
+          "detail": "0"
+        },
+        {
+          "ok": true,
+          "label": "all faces consistently wound (orientable)",
+          "detail": "0"
+        },
+        {
+          "ok": null,
+          "label": "disconnected shells",
+          "detail": "2"
+        },
+        {
+          "ok": true,
+          "label": "shell 0 closed with outward normals",
+          "detail": "V=19970 E=40064 F=20096 chi=2 genus=0 volume=382.9566 cm^3 open_edges=0"
+        },
+        {
+          "ok": true,
+          "label": "shell 1 closed with outward normals",
+          "detail": "V=768 E=1536 F=768 chi=0 genus=1 volume=0.0796 cm^3 open_edges=0"
+        }
+      ]
+    },
+    {
+      "test": 5,
+      "name": "Front label faces -Y and the can stands along +Z",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "the can stands on z = 0",
+          "detail": "z_min=0.000000000"
+        },
+        {
+          "ok": true,
+          "label": "+Z is the long axis",
+          "detail": "z=12.2706 x=6.6000 y=6.6000"
+        },
+        {
+          "ok": true,
+          "label": "circular in plan",
+          "detail": "|x-y|=0.00e+00"
+        },
+        {
+          "ok": true,
+          "label": "found loops at label u = 0.5",
+          "detail": "250"
+        },
+        {
+          "ok": true,
+          "label": "label centre lies on the x = 0 plane",
+          "detail": "max|x|=6.062e-16"
+        },
+        {
+          "ok": true,
+          "label": "label centre points at -Y",
+          "detail": "max y=-2.510000 cm"
+        },
+        {
+          "ok": null,
+          "label": "pull-tab y extent (cm)",
+          "detail": "-2.642 .. 2.642"
+        },
+        {
+          "ok": null,
+          "label": "native bounding box (cm)",
+          "detail": "6.6000 x 6.6000 x 12.2706"
+        },
+        {
+          "ok": true,
+          "label": "raw OBJ text: found label-centre vertices",
+          "detail": "202"
+        },
+        {
+          "ok": true,
+          "label": "raw OBJ text: label centre lies on x = 0",
+          "detail": "max|x|=0.00e+00"
+        },
+        {
+          "ok": true,
+          "label": "raw OBJ text: label centre faces -Y (file is not axis-converted)",
+          "detail": "y -0.033000 .. -0.025100 m"
+        },
+        {
+          "ok": true,
+          "label": "raw OBJ text: the can stands along +Z",
+          "detail": "z 0.000000 .. 0.122706 m"
+        }
+      ]
+    },
+    {
+      "test": 6,
+      "name": "OBJ exported with scale factor 0.01, applied exactly once",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "build manifest records global_scale = 0.01",
+          "detail": "0.01"
+        },
+        {
+          "ok": true,
+          "label": "export used Blender's identity axis mapping (no axis rewrite)",
+          "detail": "forward=Y up=Z"
+        },
+        {
+          "ok": true,
+          "label": "exported/native dimension ratio is exactly 0.01",
+          "detail": "0.010000000  0.010000000  0.010000032"
+        },
+        {
+          "ok": true,
+          "label": "object transform scale is 1.0 (0.01 is NOT applied twice)",
+          "detail": "(1.0, 1.0, 1.0)"
+        },
+        {
+          "ok": true,
+          "label": "exported mesh still stands on z = 0",
+          "detail": "0.000000000"
+        },
+        {
+          "ok": null,
+          "label": "native dimensions (Blender units = cm)",
+          "detail": "6.6000 x 6.6000 x 12.2706"
+        },
+        {
+          "ok": null,
+          "label": "exported OBJ dimensions (metres)",
+          "detail": "0.066000 x 0.066000 x 0.122706"
+        },
+        {
+          "ok": null,
+          "label": "i.e. real-world size",
+          "detail": "66.0 x 66.0 x 122.7 mm"
+        }
+      ]
+    },
+    {
+      "test": 7,
+      "name": "UV mapping is valid, correctly routed and not mirrored",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "exactly one UV layer",
+          "detail": "['UVMap']"
+        },
+        {
+          "ok": true,
+          "label": "all UV coordinates are finite (no NaN/inf)",
+          "detail": ""
+        },
+        {
+          "ok": true,
+          "label": "all UVs inside [0, 1]",
+          "detail": "u 0.000000..1.000000  v 0.085000..1.000000"
+        },
+        {
+          "ok": true,
+          "label": "every face lands inside a declared atlas region",
+          "detail": "0 stray faces"
+        },
+        {
+          "ok": true,
+          "label": "atlas regions do not overlap each other",
+          "detail": "0"
+        },
+        {
+          "ok": null,
+          "label": "faces per region",
+          "detail": "label=8064, lid=4480, bottom=4736, tab_top=96, tab_bot=96, tab_wall=576, rim=2816"
+        },
+        {
+          "ok": true,
+          "label": "exact test: no two non-adjacent faces overlap in UV space",
+          "detail": "0 overlapping pairs, total 0.000e+00, worst 0.000e+00 (atlas = 1.0)"
+        },
+        {
+          "ok": null,
+          "label": "UV area used / non-adjacent triangle pairs tested",
+          "detail": "0.76477 / 217,240"
+        },
+        {
+          "ok": true,
+          "label": "found front-facing label faces to test",
+          "detail": "798"
+        },
+        {
+          "ok": true,
+          "label": "+u runs to +x on the front (artwork NOT mirrored)",
+          "detail": "score=3192"
+        },
+        {
+          "ok": true,
+          "label": "+v runs up the can (artwork not flipped)",
+          "detail": "score=3192"
+        },
+        {
+          "ok": true,
+          "label": "label faces sample saturated printed ink (not bare metal)",
+          "detail": "mean channel spread 137.7, mean RGB [95.2, 58.1, 117.3]"
+        },
+        {
+          "ok": true,
+          "label": "cobalt, red and white artwork all land on the barrel",
+          "detail": "of 8064 label faces: 59.2% cobalt, 31.9% red, 9.0% white"
+        },
+        {
+          "ok": true,
+          "label": "lid faces sample neutral aluminium",
+          "detail": "mean RGB [179.0, 183.5, 190.0]"
+        },
+        {
+          "ok": true,
+          "label": "bottom faces sample neutral aluminium",
+          "detail": "mean RGB [170.4, 175.2, 182.2]"
+        },
+        {
+          "ok": true,
+          "label": "rim faces sample neutral aluminium",
+          "detail": "mean RGB [178.4, 182.6, 188.8]"
+        },
+        {
+          "ok": true,
+          "label": "tab_top faces sample neutral aluminium",
+          "detail": "mean RGB [209.0, 212.7, 218.1]"
+        }
+      ]
+    },
+    {
+      "test": 8,
+      "name": "Exported OBJ re-imports cleanly into an empty Blender scene",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "exactly one mesh imported",
+          "detail": "['EloCola']"
+        },
+        {
+          "ok": true,
+          "label": "vertex count survives the round trip",
+          "detail": "20738 vs 20738"
+        },
+        {
+          "ok": true,
+          "label": "face count survives the round trip",
+          "detail": "20864 vs 20864"
+        },
+        {
+          "ok": true,
+          "label": "UV layer present",
+          "detail": "['UVMap']"
+        },
+        {
+          "ok": true,
+          "label": "material reference resolves",
+          "detail": "['EloColaSurface']"
+        },
+        {
+          "ok": true,
+          "label": "exactly one texture referenced",
+          "detail": "['elo_cola_texture.png']"
+        },
+        {
+          "ok": true,
+          "label": "texture file resolves on disk",
+          "detail": "[]"
+        },
+        {
+          "ok": true,
+          "label": "texture loads at full resolution",
+          "detail": "[[2048, 2048]]"
+        },
+        {
+          "ok": true,
+          "label": "dimensions are native x 0.01 (to the OBJ's 1e-6 m precision)",
+          "detail": "[0.066, 0.066, 0.122706003] vs expected [0.065999999, 0.065999999, 0.122705603]"
+        },
+        {
+          "ok": true,
+          "label": "re-import needs no corrective transform (identity axes)",
+          "detail": "[[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]]"
+        },
+        {
+          "ok": true,
+          "label": "still standing on z = 0",
+          "detail": "0.0"
+        },
+        {
+          "ok": true,
+          "label": "label centre still faces -Y after the round trip",
+          "detail": "loops=202 max|x|=0.0 max_y=-0.0251"
+        },
+        {
+          "ok": true,
+          "label": "geometry is still watertight after the round trip",
+          "detail": "boundary=0 nonmanifold=0 loose=0 degenerate=0"
+        },
+        {
+          "ok": true,
+          "label": "every shell still closed with outward normals",
+          "detail": "[{'faces': 20096, 'volume': 0.000382954452, 'open_edges': 0}, {'faces': 768, 'volume': 7.9581e-08, 'open_edges': 0}]"
+        }
+      ]
+    },
+    {
+      "test": 9,
+      "name": "Saved .blend opens in a separate Blender process",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "file opened without error",
+          "detail": ""
+        },
+        {
+          "ok": true,
+          "label": "one mesh object present",
+          "detail": "['EloCola']"
+        },
+        {
+          "ok": true,
+          "label": "UV map present",
+          "detail": "['UVMap']"
+        },
+        {
+          "ok": true,
+          "label": "material present",
+          "detail": "['EloColaSurface']"
+        },
+        {
+          "ok": true,
+          "label": "single texture present and packed (no missing dependency)",
+          "detail": "[{'name': 'elo_cola_texture', 'size': [2048, 2048], 'packed': True, 'filepath': '//assets/elo_cola_texture.png'}]"
+        },
+        {
+          "ok": true,
+          "label": "render set-up saved (Cycles)",
+          "detail": "CYCLES"
+        },
+        {
+          "ok": true,
+          "label": "camera and studio lights saved with the project",
+          "detail": "1 camera(s), 7 light(s)"
+        }
+      ]
+    },
+    {
+      "test": 10,
+      "name": "Final product image is exactly 512 x 512 PNG",
+      "passed": true,
+      "checks": [
+        {
+          "ok": true,
+          "label": "format is PNG",
+          "detail": "PNG"
+        },
+        {
+          "ok": true,
+          "label": "resolution is 512 x 512",
+          "detail": "512 x 512"
+        },
+        {
+          "ok": true,
+          "label": "image is not blank",
+          "detail": "stddev=74.86"
+        },
+        {
+          "ok": null,
+          "label": "file size",
+          "detail": "266,419 bytes"
+        }
+      ]
+    }
+  ]
+}
